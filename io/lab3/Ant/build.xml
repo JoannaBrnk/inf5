@@ -1,4 +1,12 @@
 ﻿<project name="bank-zbozowy" default="compile">
+	<path id="jetty.cp">
+		<fileset dir="Jetty"/>
+	</path>
+	<path id="lib.cp">
+		<path refid="jetty.cp"/>
+		<pathelement location="bank-zbozowy/lib/freemarker.jar"/>
+		<pathelement location="bank-zbozowy/lib/servlet-api-2.5.jar"/>
+	</path>
 	<target name="init">
 		<echo message="Inicjalizacja projektu ${ant.project.name}." />
 		<echo message="W ramach tego celu:" />
@@ -9,7 +17,7 @@
 	</target>
 	<target name="compile" depends="init">
 		<echo message="Kompilacja kodu projektu ${ant.project.name}." />
-		<javac srcdir="bank-zbozowy/src" destdir="bin" includeantruntime="false" encoding="utf-8" />
+		<javac srcdir="bank-zbozowy/src" destdir="bin" includeantruntime="false" encoding="utf-8" classpathref="lib.cp"/>
 		<echo message="Ten cel zalezy od:" />
 		<echo message="* inicjalizacji projektu" />
 	</target>
