@@ -7,6 +7,10 @@
 		<pathelement location="bank-zbozowy/lib/freemarker.jar"/>
 		<pathelement location="bank-zbozowy/lib/servlet-api-2.5.jar"/>
 	</path>
+	<path id="dist.cp">
+		<path refid="lib.cp"/>
+		<fileset dir="dist"/>
+	</path>
 	<target name="init">
 		<echo message="Inicjalizacja projektu ${ant.project.name}." />
 		<echo message="W ramach tego celu:" />
@@ -33,7 +37,7 @@
 	</target>
 	<target name="dist" depends="init, compile, copy">
 		<echo message="Przygotowanie pliku jar do dystrybucji projektu ${ant.project.name}." />
-		<jar destfile="bank.jar">
+		<jar destfile="dist/bank.jar">
 			<fileset dir="bin"/>
 		</jar>
 		<echo message="Ten cel zalezy od:" />
@@ -57,10 +61,9 @@
 	</target>
 	<target name="run" depends="dist">
 		<echo message="Uruchamianie projektu ${ant.project.name}." />
-		<echo message="W ramach tego celu:" />
-		<echo message="* uruchom klase put.io.selenium.atm.SimpleServer" />
-		<echo message="  znajdujaca sie w pliku bank.jar, " />
-		<echo message="  pamietajac o podaniu sciezki do wymaganych bibliotek" />
+		<java
+				classname="put.io.selenium.atm.SimpleServer"
+				classpathref="dist.cp" />
 		<echo message="Ten cel zalezy od:" />
 		<echo message="* przygotowania pliku jar" />
 	</target>
