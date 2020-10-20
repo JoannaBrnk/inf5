@@ -9,8 +9,7 @@
 	</target>
 	<target name="compile" depends="init">
 		<echo message="Kompilacja kodu projektu ${ant.project.name}." />
-		<echo message="W ramach tego celu:" />
-		<echo message="* skompiluj kod zrodlowy projektu (znajdujacy sie w folderze src) do folderu bin" />
+		<javac srcdir="bank-zbozowy/src" destdir="bin" includeantruntime="false" encoding="utf-8" />
 		<echo message="Ten cel zalezy od:" />
 		<echo message="* inicjalizacji projektu" />
 	</target>
@@ -21,13 +20,14 @@
 		<echo message="Ten cel zalezy od:" />
 		<echo message="* inicjalizacji projektu" />
 		<copy todir="bin">
-			<fileset dir="res"/>
+			<fileset dir="bank-zbozowy/res"/>
 		</copy>
 	</target>
-	<target name="dist" depends="init, copy, compile">
+	<target name="dist" depends="init, compile, copy">
 		<echo message="Przygotowanie pliku jar do dystrybucji projektu ${ant.project.name}." />
-		<echo message="W ramach tego celu:" />
-		<echo message="* utworz plik bank.jar w folderze dist na podstawie kodu binarnego z folderu bin" />
+		<jar destfile="bank.jar">
+			<fileset dir="bin"/>
+		</jar>
 		<echo message="Ten cel zalezy od:" />
 		<echo message="* kompilacji projektu (kod musi byc skompilowany)" />
 		<echo message="* kopiowania zawartosci statycznej projektu (pliki statyczne musza znajdowac sie w bin)" />
