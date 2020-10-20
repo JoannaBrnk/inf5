@@ -2,8 +2,10 @@
 	<target name="init">
 		<echo message="Inicjalizacja projektu ${ant.project.name}." />
 		<echo message="W ramach tego celu:" />
-		<echo message="* utworz folder bin" />
-		<echo message="* utworz folder dist" />
+		<echo message="* utworzono folder bin" />
+		<echo message="* utworzono folder dist" />
+		<mkdir dir="bin"/>
+		<mkdir dir="dist"/>
 	</target>
 	<target name="compile" depends="init">
 		<echo message="Kompilacja kodu projektu ${ant.project.name}." />
@@ -15,9 +17,12 @@
 	<target name="copy" depends="init">
 		<echo message="Kopiowanie zawartosci statycznej projektu ${ant.project.name}." />
 		<echo message="W ramach tego celu:" />
-		<echo message="* skopiuj zawartosc folderu res do folderu bin" />
+		<echo message="* skopiowano zawartosc folderu res do folderu bin" />
 		<echo message="Ten cel zalezy od:" />
 		<echo message="* inicjalizacji projektu" />
+		<copy todir="bin">
+			<fileset dir="res"/>
+		</copy>
 	</target>
 	<target name="dist" depends="init, copy, compile">
 		<echo message="Przygotowanie pliku jar do dystrybucji projektu ${ant.project.name}." />
@@ -31,14 +36,16 @@
 	<target name="clean">
 		<echo message="Usuwanie plikow binarnych projektu ${ant.project.name}." />
 		<echo message="W ramach tego celu:" />
-		<echo message="* usun folder bin" />
+		<echo message="* usunieto folder bin" />
+		<delete dir="bin"/>
 	</target>
 	<target name="clean-all" depends="clean">
 		<echo message="Usuwanie wszystkich plików wykonywalnych projektu ${ant.project.name}." />
 		<echo message="W ramach tego celu:" />
-		<echo message="* usun folder dist" />
+		<echo message="* usunieto folder dist" />
 		<echo message="Ten cel zalezy od:" />
 		<echo message="* usuwania plikow binarnych projektu" />
+		<delete dir="dist"/>
 	</target>
 	<target name="run" depends="dist">
 		<echo message="Uruchamianie projektu ${ant.project.name}." />
