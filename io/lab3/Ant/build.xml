@@ -5,21 +5,21 @@
 		<echo message="* utworz folder bin" />
 		<echo message="* utworz folder dist" />
 	</target>
-	<target name="compile">
+	<target name="compile" depends="init">
 		<echo message="Kompilacja kodu projektu ${ant.project.name}." />
 		<echo message="W ramach tego celu:" />
 		<echo message="* skompiluj kod zrodlowy projektu (znajdujacy sie w folderze src) do folderu bin" />
 		<echo message="Ten cel zalezy od:" />
 		<echo message="* inicjalizacji projektu" />
 	</target>
-	<target name="copy">
+	<target name="copy" depends="init">
 		<echo message="Kopiowanie zawartosci statycznej projektu ${ant.project.name}." />
 		<echo message="W ramach tego celu:" />
 		<echo message="* skopiuj zawartosc folderu res do folderu bin" />
 		<echo message="Ten cel zalezy od:" />
 		<echo message="* inicjalizacji projektu" />
 	</target>
-	<target name="dist">
+	<target name="dist" depends="init, copy, compile">
 		<echo message="Przygotowanie pliku jar do dystrybucji projektu ${ant.project.name}." />
 		<echo message="W ramach tego celu:" />
 		<echo message="* utworz plik bank.jar w folderze dist na podstawie kodu binarnego z folderu bin" />
@@ -33,14 +33,14 @@
 		<echo message="W ramach tego celu:" />
 		<echo message="* usun folder bin" />
 	</target>
-	<target name="clean-all">
+	<target name="clean-all" depends="clean">
 		<echo message="Usuwanie wszystkich plików wykonywalnych projektu ${ant.project.name}." />
 		<echo message="W ramach tego celu:" />
 		<echo message="* usun folder dist" />
 		<echo message="Ten cel zalezy od:" />
 		<echo message="* usuwania plikow binarnych projektu" />
 	</target>
-	<target name="run">
+	<target name="run" depends="dist">
 		<echo message="Uruchamianie projektu ${ant.project.name}." />
 		<echo message="W ramach tego celu:" />
 		<echo message="* uruchom klase put.io.selenium.atm.SimpleServer" />
