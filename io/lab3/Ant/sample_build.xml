@@ -1,0 +1,52 @@
+﻿<project name="bank-zbozowy">
+	<target name="init">
+		<echo message="Inicjalizacja projektu ${ant.project.name}." />
+		<echo message="W ramach tego celu:" />
+		<echo message="* utworz folder bin" />
+		<echo message="* utworz folder dist" />
+	</target>
+	<target name="compile">
+		<echo message="Kompilacja kodu projektu ${ant.project.name}." />
+		<echo message="W ramach tego celu:" />
+		<echo message="* skompiluj kod zrodlowy projektu (znajdujacy sie w folderze src) do folderu bin" />
+		<echo message="Ten cel zalezy od:" />
+		<echo message="* inicjalizacji projektu" />
+	</target>
+	<target name="copy">
+		<echo message="Kopiowanie zawartosci statycznej projektu ${ant.project.name}." />
+		<echo message="W ramach tego celu:" />
+		<echo message="* skopiuj zawartosc folderu res do folderu bin" />
+		<echo message="Ten cel zalezy od:" />
+		<echo message="* inicjalizacji projektu" />
+	</target>
+	<target name="dist">
+		<echo message="Przygotowanie pliku jar do dystrybucji projektu ${ant.project.name}." />
+		<echo message="W ramach tego celu:" />
+		<echo message="* utworz plik bank.jar w folderze dist na podstawie kodu binarnego z folderu bin" />
+		<echo message="Ten cel zalezy od:" />
+		<echo message="* kompilacji projektu (kod musi byc skompilowany)" />
+		<echo message="* kopiowania zawartosci statycznej projektu (pliki statyczne musza znajdowac sie w bin)" />
+		<echo message="* inicjalizacji projektu (musi istniec folder dist)" />
+	</target>
+	<target name="clean">
+		<echo message="Usuwanie plikow binarnych projektu ${ant.project.name}." />
+		<echo message="W ramach tego celu:" />
+		<echo message="* usun folder bin" />
+	</target>
+	<target name="clean-all">
+		<echo message="Usuwanie wszystkich plików wykonywalnych projektu ${ant.project.name}." />
+		<echo message="W ramach tego celu:" />
+		<echo message="* usun folder dist" />
+		<echo message="Ten cel zalezy od:" />
+		<echo message="* usuwania plikow binarnych projektu" />
+	</target>
+	<target name="run">
+		<echo message="Uruchamianie projektu ${ant.project.name}." />
+		<echo message="W ramach tego celu:" />
+		<echo message="* uruchom klase put.io.selenium.atm.SimpleServer" />
+		<echo message="  znajdujaca sie w pliku bank.jar, " />
+		<echo message="  pamietajac o podaniu sciezki do wymaganych bibliotek" />
+		<echo message="Ten cel zalezy od:" />
+		<echo message="* przygotowania pliku jar" />
+	</target>
+</project>
